@@ -30,5 +30,8 @@ public class User {
     @Column(name = "sex")
     private String sex;
 
+    @OneToMany(cascade = CascadeType.ALL
+            , mappedBy = "user")
     List<Flight> flights;
+
 }

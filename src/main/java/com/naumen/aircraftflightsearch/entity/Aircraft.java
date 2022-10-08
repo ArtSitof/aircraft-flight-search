@@ -3,7 +3,6 @@ package com.naumen.aircraftflightsearch.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "aircrafts")
@@ -18,8 +17,8 @@ public class Aircraft {
     @Column(name = "names")
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "flights_id")
+    @OneToOne(mappedBy = "aircraft"
+            , cascade = CascadeType.ALL)
     private Flight flight;
 
 }

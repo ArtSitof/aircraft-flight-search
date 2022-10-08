@@ -33,9 +33,12 @@ public class Flight {
     @Column(name = "company")
     private String company;
 
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "aircraft_id")
     private Aircraft aircraft;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
 
 }
