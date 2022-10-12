@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.3.xsd">
+
+    <changeSet id="create_table_flights_users" author="AAZaykov">
+
+        <createTable tableName="flights_passengers" remarks="Рейсы">
+            <column name="flight_id"  type="bigint" autoIncrement="true" remarks="id рейса">
+                <constraints nullable="false"/>
+            </column>
+            <column name="passenger_id"  type="bigint" autoIncrement="true" remarks="id пассажира">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <addPrimaryKey tableName="flights_passengers" columnNames="flight_id, passenger_id"/>
+        
+        <addForeignKeyConstraint baseTableName="flights_passengers" baseColumnNames="flight_id"
+                                 constraintName="flights_passengers_flights_FK" referencedTableName="flights"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="flights_passengers" baseColumnNames="passenger_id"
+                                 constraintName="flights_passengers_passengers_FK" referencedTableName="passengers"
+                                 referencedColumnNames="id"/>
+        
+    </changeSet>
+</databaseChangeLog>

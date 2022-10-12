@@ -1,13 +1,16 @@
 package com.naumen.aircraftflightsearch.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "flights")
 @Data
+@NoArgsConstructor
 public class Flight {
 
     @Id
@@ -18,7 +21,7 @@ public class Flight {
     @Column(name = "flight_number")
     private String flightNumber;
 
-    @Column(name = "depature_city")
+    @Column(name = "departure_city")
     private String departureCity;
 
     @Column(name = "arrival_city")
@@ -30,15 +33,29 @@ public class Flight {
     @Column(name = "arrival_date")
     private SimpleDateFormat arrivalDate;
 
-    @Column(name = "company")
-    private String company;
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "company_id")
+    private Company company;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "aircraft_id")
     private Aircraft aircraft;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    @ToString.Exclude
+    @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(
+            name = "flights_passengers",
+            joinColumns = @JoinColumn(name = "flight_id"),
+            inverseJoinColumns = @JoinColumn(name = "passenger_id")
+    )
+    private List<Passenger> passengers;
 
+    public void addPassengerToFlight(Passenger passenger){
+        if (passengers == null){
+            passengers = new ArrayList<>();
+        }
+        passengers.add(passenger);
+    }
 }
