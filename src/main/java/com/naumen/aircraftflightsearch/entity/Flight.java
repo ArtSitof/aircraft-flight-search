@@ -3,8 +3,8 @@ package com.naumen.aircraftflightsearch.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,6 +16,7 @@ public class Flight {
     @Id
     @GeneratedValue
     @Column(name = "id")
+    @EqualsAndHashCode.Exclude
     private Long id;
 
     @Column(name = "flight_number")
@@ -28,34 +29,27 @@ public class Flight {
     private String arrivalCity;
 
     @Column(name = "departure_date")
-    private SimpleDateFormat departureDate;
+    private Date departureDate;
 
     @Column(name = "arrival_date")
-    private SimpleDateFormat arrivalDate;
+    private Date arrivalDate;
 
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "company_id")
+    @EqualsAndHashCode.Exclude
     private Company company;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "aircraft_id")
+    @EqualsAndHashCode.Exclude
     private Aircraft aircraft;
 
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
     @ToString.Exclude
-    @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(
-            name = "flights_passengers",
-            joinColumns = @JoinColumn(name = "flight_id"),
-            inverseJoinColumns = @JoinColumn(name = "passenger_id")
-    )
-    private List<Passenger> passengers;
+    @EqualsAndHashCode.Exclude
+    @ManyToMany(mappedBy = "flights",cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
+    private List<Passenger> passengers = new ArrayList<>();
 
     public void addPassengerToFlight(Passenger passenger){
-        if (passengers == null){
-            passengers = new ArrayList<>();
-        }
         passengers.add(passenger);
     }
 }

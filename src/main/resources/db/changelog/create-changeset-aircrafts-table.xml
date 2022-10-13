@@ -16,9 +16,6 @@
             <column name="aircraft_name" type="varchar(50)" remarks="модель самолёта">
                 <constraints nullable="false"/>
             </column>
-            <column name="flight_id" type="bigint" remarks="id рейса">
-                <constraints nullable="false"/>
-            </column>
         </createTable>
 
     </changeSet>

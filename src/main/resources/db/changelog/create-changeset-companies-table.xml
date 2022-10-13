@@ -21,9 +21,6 @@
             <column name="address" type="varchar(255)" remarks="адрес авиакомпании">
                 <constraints nullable="false"/>
             </column>
-            <column name="flight_id" type="bigint" remarks="id рейса">
-                <constraints nullable="false"/>
-            </column>
         </createTable>
 
     </changeSet>

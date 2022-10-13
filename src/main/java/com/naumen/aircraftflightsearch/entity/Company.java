@@ -3,6 +3,7 @@ package com.naumen.aircraftflightsearch.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,10 +25,14 @@ public class Company {
     @Column(name = "address")
     private String address;
 
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
     @ToString.Exclude
-    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "flight_id")
-    private List<Flight> flights;
+    @EqualsAndHashCode.Exclude
+    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST},
+            mappedBy = "company")
+    private List<Flight> flights = new ArrayList<>();
+
+    public void addFlightToCompany(Flight flight) {
+        flights.add(flight);
+        flight.setCompany(this);
+    }
 }

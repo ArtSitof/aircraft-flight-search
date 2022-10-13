@@ -20,17 +20,13 @@ public class Aircraft {
     @Column(name = "aircraft_name")
     private String aircraftName;
 
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
     @ToString.Exclude
-    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "flight_id")
-    private List<Flight> flights;
+    @EqualsAndHashCode.Exclude
+    @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST},
+                mappedBy = "aircraft")
+    private List<Flight> flights = new ArrayList<>();
 
     public void addFlightToAircraft(Flight flight) {
-        if (flights == null){
-            flights = new ArrayList<>();
-        }
         flights.add(flight);
         flight.setAircraft(this);
     }

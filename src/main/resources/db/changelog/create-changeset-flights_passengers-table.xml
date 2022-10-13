@@ -8,16 +8,16 @@
 
     <changeSet id="create_table_flights_users" author="AAZaykov">
 
-        <createTable tableName="flights_passengers" remarks="Рейсы">
-            <column name="flight_id"  type="bigint" autoIncrement="true" remarks="id рейса">
+        <createTable tableName="flights_passengers" remarks="Связь рейсов с пассажирами">
+            <column name="flight_id"  type="bigint" remarks="id рейса">
                 <constraints nullable="false"/>
             </column>
-            <column name="passenger_id"  type="bigint" autoIncrement="true" remarks="id пассажира">
+            <column name="passenger_id"  type="bigint" remarks="id пассажира">
                 <constraints nullable="false"/>
             </column>
         </createTable>
         
-        <addPrimaryKey tableName="flights_passengers" columnNames="flight_id, passenger_id"/>
+        <addPrimaryKey tableName="flights_passengers" constraintName="flights_passengers_PK" clustered="true" columnNames="flight_id, passenger_id"/>
         
         <addForeignKeyConstraint baseTableName="flights_passengers" baseColumnNames="flight_id"
                                  constraintName="flights_passengers_flights_FK" referencedTableName="flights"

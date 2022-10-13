@@ -21,10 +21,10 @@
             <column name="arrival_city" type="varchar(100)" remarks="город прилёта">
                 <constraints nullable="false"/>
             </column>
-            <column name="departure_date" type="DATETIME" remarks="дата/время вылета">
+            <column name="departure_date" type="DATE" remarks="дата/время вылета">
                 <constraints nullable="false"/>
             </column>
-            <column name="arrival_date" type="DATETIME" remarks="дата/время прилёта">
+            <column name="arrival_date" type="DATE" remarks="дата/время прилёта">
                 <constraints nullable="false"/>
             </column>
             <column name="company_id" type="bigint" remarks="id компании">

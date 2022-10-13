@@ -16,17 +16,5 @@
                                  referencedTableName="aircrafts"
                                  referencedColumnNames="id"/>
 
-        <addForeignKeyConstraint baseTableName="companies" baseColumnNames="flight_id" constraintName="companies_flight_FK"
-                                 referencedTableName="flights"
-                                 referencedColumnNames="id"/>
-
-        <addForeignKeyConstraint baseTableName="aircrafts" baseColumnNames="flight_id" constraintName="aircrafts_flights_FK"
-                                 referencedTableName="flights"
-                                 referencedColumnNames="id"/>
-
-        <addForeignKeyConstraint baseTableName="passengers" baseColumnNames="flight_id" constraintName="passengers_flights_FK"
-                                 referencedTableName="flights"
-                                 referencedColumnNames="id"/>
-
     </changeSet>
 </databaseChangeLog>

@@ -21,13 +21,10 @@
             <column name="age" type="int" remarks="возраст пассажира">
                 <constraints nullable="false"/>
             </column>
-            <column name="passport_id" type="int" remarks="номер паспорта пассажира">
+            <column name="passport_id" type="varchar(20)" remarks="номер паспорта пассажира">
                 <constraints nullable="false"/>
             </column>
             <column name="sex" type="varchar(1)" remarks="пол пассажира">
-                <constraints nullable="false"/>
-            </column>
-            <column name="flight_id" type="bigint" remarks="id рейса">
                 <constraints nullable="false"/>
             </column>
         </createTable>
