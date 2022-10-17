@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.3.xsd">
+
+    <changeSet id="create_table_flights" author="AAZaykov">
+
+        <createTable tableName="flights" remarks="Рейсы">
+            <column name="id"  type="bigint" autoIncrement="true" remarks="id рейса">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="flight_number" type="varchar(20)" remarks="номер рейса">
+                <constraints nullable="false"/>
+            </column>
+            <column name="departure_city" type="varchar(100)" remarks="город вылета">
+                <constraints nullable="false"/>
+            </column>
+            <column name="arrival_city" type="varchar(100)" remarks="город прилёта">
+                <constraints nullable="false"/>
+            </column>
+            <column name="departure_date" type="DATE" remarks="дата/время вылета">
+                <constraints nullable="false"/>
+            </column>
+            <column name="arrival_date" type="DATE" remarks="дата/время прилёта">
+                <constraints nullable="false"/>
+            </column>
+            <column name="company_id" type="bigint" remarks="id компании">
+                <constraints nullable="false"/>
+            </column>
+            <column name="aircraft_id" type="bigint" remarks="id самолёта">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+</databaseChangeLog>

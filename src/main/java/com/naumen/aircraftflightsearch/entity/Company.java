@@ -7,27 +7,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "aircrafts")
+@Table(name = "companies")
 @Data
 @NoArgsConstructor
-public class Aircraft {
-
+public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "aircraft_name")
-    private String aircraftName;
+    @Column(name = "company_name")
+    private String companyName;
+
+    @Column(name = "url")
+    private String url;
+
+    @Column(name = "address")
+    private String address;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST},
-                mappedBy = "aircraft")
+            mappedBy = "company")
     private List<Flight> flights = new ArrayList<>();
 
-    public void addFlightToAircraft(Flight flight) {
+    public void addFlightToCompany(Flight flight) {
         flights.add(flight);
-        flight.setAircraft(this);
+        flight.setCompany(this);
     }
 }
