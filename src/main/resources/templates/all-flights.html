@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All flights from database</title>
+</head>
+<body>
+<h2>List of flights:</h2>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Flight Number</th>
+        <th>Departure City</th>
+        <th>Arrival City</th>
+        <th>Departure Date</th>
+        <th>Arrival Date</th>
+        <th>Company</th>
+        <th>Aircraft</th>
+    </tr>
+    <th:block th:each="flight : ${flights}">
+        <tr>
+            <td th:text="${flight.id}"></td>
+            <td th:text="${flight.flightNumber}"></td>
+            <td th:text="${flight.departureCity}"></td>
+            <td th:text="${flight.arrivalCity}"></td>
+            <td th:text="${flight.departureDate}"></td>
+            <td th:text="${flight.arrivalDate}"></td>
+            <td th:text="${flight.company.companyName}"></td>
+            <td th:text="${flight.aircraft.aircraftName}"></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

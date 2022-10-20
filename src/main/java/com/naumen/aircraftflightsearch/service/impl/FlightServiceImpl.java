@@ -5,6 +5,8 @@ import com.naumen.aircraftflightsearch.repository.FlightRepository;
 import com.naumen.aircraftflightsearch.service.FlightService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FlightServiceImpl implements FlightService {
 
@@ -16,5 +18,15 @@ public class FlightServiceImpl implements FlightService {
 
     public Flight getFlightById(Long id) {
         return flightRepository.findById(id).get();
+    }
+
+    @Override
+    public List<Flight> getAllFlights() {
+        return flightRepository.findAll();
+    }
+
+    @Override
+    public void saveNewFlight(Flight flight) {
+        flightRepository.save(flight);
     }
 }

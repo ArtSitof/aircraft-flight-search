@@ -25,6 +25,13 @@ public class Company {
     @Column(name = "address")
     private String address;
 
+    public Company(Long id, String companyName, String url, String address) {
+        this.id = id;
+        this.companyName = companyName;
+        this.url = url;
+        this.address = address;
+    }
+
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST},

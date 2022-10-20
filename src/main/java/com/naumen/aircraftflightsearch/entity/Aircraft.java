@@ -20,6 +20,11 @@ public class Aircraft {
     @Column(name = "aircraft_name")
     private String aircraftName;
 
+    public Aircraft(Long id, String aircraftName) {
+        this.id = id;
+        this.aircraftName = aircraftName;
+    }
+
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(cascade = {CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST},

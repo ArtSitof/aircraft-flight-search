@@ -1,5 +1,10 @@
 package com.naumen.aircraftflightsearch.service;
 
-public interface FlightService {
+import com.naumen.aircraftflightsearch.entity.Flight;
 
+import java.util.List;
+
+public interface FlightService {
+    List<Flight> getAllFlights();
+    void saveNewFlight(Flight flight);
 }
